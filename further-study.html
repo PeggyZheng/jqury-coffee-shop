@@ -16,8 +16,9 @@
         <h1>Coffee Shop</h1>
         <br>
 
-        <img id="coffee_image" src="FIXME" alt="make this image work" height="300" width="200">
-
+        <img id="coffee_machine" src="static/coffee_machine.jpg" alt="make this image work" height="300" width="200">
+        <img id="coffee_mug" src="static/coffee_mug.jpg" alt="make this image work" height="300" width="200">
+        <img id="coffee_beans" src="static/coffee_beans.jpg" alt="make this image work" height="300" width="200">
         <h3 id="message">Click The Image To Order Coffee</h3>
 
         <table class="table">
@@ -49,11 +50,13 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
 
-    var myImage = $("#coffee_image");
+    var myImage = $("#coffee_beans");
     var myRevenueMessage = $("#revenue");
 
     var drinksOrdered = [];
     var total = 0;
+    $('#coffee_mug').hide();
+    $('#coffee_machine').hide();
 
     myImage.attr("src", "static/coffee_beans.jpg");
 
@@ -69,14 +72,30 @@
     function makeCoffee(drinkType) {
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
-
+        myImage.fadeOut(1000);
+        setTimeout(function () {  $('#coffee_machine').fadeIn(1000);}, 1000);
+        setTimeout(function () {  $('#coffee_machine').fadeOut(1000);}, 2000);
+        setTimeout(function () {  $('#coffee_mug').fadeIn(1000);}, 3000);
+        setTimeout(function () {  $('#coffee_mug').fadeOut(1000);}, 4000);
+        setTimeout(function () {  $('#coffee_beans').fadeIn(1000);}, 5000);
+       // $('#coffee_machine').fadeIn();
         var myRevenue = revenue(drinkType);
         myRevenueMessage.html("Today's revenues: " + myRevenue);
+ 
+// myImage.fadeOut(5000, function(){
+//     setTimeout(function(){
+//         myImage.fadeIn(5000, function(){
+//             myImage.attr('src', 'static/coffee_beans.jpg')
+//         }, 6000) 
+//     })
+// });
 
-        myImage.attr('src', "static/coffee_machine.jpg");
-        setTimeout(function () { myImage.attr('src', "static/coffee_mug.jpg"); }, 500);
-        setTimeout(function () { myImage.attr('src', "static/coffee_beans.jpg"); }, 1500);
+//         myImage.attr('src', "static/coffee_machine.jpg");
+//         setTimeout(function () { myImage.attr('src', "static/coffee_mug.jpg"); }, 500);
+//         setTimeout(function () { myImage.attr('src', "static/coffee_beans.jpg"); }, 1500);
     }
+
+
 
 
     // Create variables for Espresso, Latte, and Hot Chocolate;
